@@ -62,7 +62,7 @@ $$
 \sum_{i=1}^n \pi_{ij} = 1 \quad \forall j = 1,\dots,n
 $$
 
-où $$\( C_{ij} \)$$ représente le coût  $$\( \| x_i - y_j \|^p \)$$ pour associer le point bleu $$\( i \) au point rouge \( j \), et \( \pi_{ij} \in \{0,1\} \)$$ indique si l'appariement est sélectionné.
+où $$\( C_{ij} \)$$ représente le coût  $$\( \| x_i - y_j \|^p \)$$ pour associer le point bleu $$\( i \)$$ au point rouge $$\( j \)$$, et $$\( \pi_{ij} \in \{0,1\} \)$$ indique si l'appariement est sélectionné.
 
 
 [ explications des heuristiques simples ]
