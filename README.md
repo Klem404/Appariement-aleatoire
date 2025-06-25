@@ -64,9 +64,40 @@ $$
 
 où $$\( C_{ij} \)$$ représente le coût  $$\( \| x_i - y_j \|^p \)$$ pour associer le point bleu $$\( i \)$$ au point rouge $$\( j \)$$, et $$\( \pi_{ij} \in \{0,1\} \)$$ indique si l'appariement est sélectionné.
 
+Les trois heuristiques simples utilisée sont Greedy, NearestNeighbour, et 2Improvment. 
 
-[ explications des heuristiques simples ]
-Nous avons eu ces résultats. [results]
+--L'algorithme **Greedy** consiste à itérativement associer les paires de points (bleu, rouge) de coût minimal, en évitant de réutiliser des points déjà associés.
+
+- À chaque étape, on choisit la paire de points $ (i,j) $ non encore utilisée minimisant la distance $ C_{ij} $.
+- Complexité : $\mathcal{O}(n^2)$.
+
+--L'algorithme **Nearest Neighbour** procède différemment : pour chaque point bleu $i$, on choisit le point rouge $j$ le plus proche (non encore pris) :
+
+$$
+j = \arg\min_{j'} \| x_i - y_{j'} \|
+$$
+
+- Chaque point bleu est traité dans l'ordre, et associé à son voisin rouge le plus proche non assigné.
+- Complexité : $\mathcal{O}(n^2)$.
+
+--L'algorithme **2-Improvement** (ou 2-opt) part d'un matching initial , et cherche à améliorer localement la solution :
+
+- On parcourt les paires d'appariements $(i,j)$ et $(k,l)$,
+- On teste si échanger les correspondances ($i \leftrightarrow l$, $k \leftrightarrow j$) réduit le coût total :
+
+$$
+\|x_i - y_j\|^p + \|x_k - y_l\|^p > \|x_i - y_l\|^p + \|x_k - y_j\|^p
+$$
+
+- Si oui, on effectue l’échange. On répète jusqu’à convergence.
+
+- Complexité moyenne : dépend du nombre d'itérations, généralement entre $\mathcal{O}(n^2)$ et $\mathcal{O}(n^3)$.
+
+
+Nous avons eu ces résultats. 
+
+
+
 Ensuite,nous avons regardé deux algorithmes + complexes, l'algorithme hongrois, et l'algorithme sinkhorn , [explications des deux algos et calcul des complexité (et celle de prog lin)]
 et nous avons eu ces résultats :  [results ].
 
