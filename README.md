@@ -40,25 +40,29 @@ Clément s'est plus concentré sur la partie informatique, les simulations, tand
 
 ### Rapport Clément
 
-#### Algorithmes 
+#### Algorithmes
 
-\section{Formulation du problème de matching}
+Tout d'abord, j'ai commencé à implémenter différents algorithmes heuristiques simples et à les comparer avec les vraies solutions, calculées via programmation linéaire, dont l'encodage du problème est le suivant :
+
+##### Formulation du problème de matching
 
 Le problème de matching biparti peut s’écrire comme un problème d’optimisation combinatoire sur une matrice de permutation :
 
-\[
+$$
 \min_{\pi \in \{0,1\}^{n \times n}} \sum_{i=1}^n \sum_{j=1}^n C_{ij} \pi_{ij}
-\]
+$$
 
 sous contraintes :
 
-\[
-\sum_{j=1}^n \pi_{ij} = 1 \quad \forall i = 1,\dots,n, \qquad
+$$
+\sum_{j=1}^n \pi_{ij} = 1 \quad \forall i = 1,\dots,n
+$$
+
+$$
 \sum_{i=1}^n \pi_{ij} = 1 \quad \forall j = 1,\dots,n
-\]
+$$
 
-où \( C_{ij} \) représente le coût \( \| x_i - y_j \|^p \) pour associer le point bleu \( i \) au point rouge \( j \), et \( \pi_{ij} \in \{0,1\} \) indique si l'appariement est choisi.
-
+où \( C_{ij} \) représente le coût (souvent la distance \( \| x_i - y_j \|^p \)) pour associer le point bleu \( i \) au point rouge \( j \), et \( \pi_{ij} \in \{0,1\} \) indique si l'appariement est sélectionné.
 
 
 [ explications des heuristiques simples ]
