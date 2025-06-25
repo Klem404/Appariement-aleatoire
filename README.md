@@ -42,7 +42,6 @@ Clément s'est plus concentré sur la partie informatique, les simulations, tand
 
 #### Algorithmes 
 
-Tout d'abord, j'ai commencé à implémenter différents algorithmes heuristiques simples et des les comparer avec les vrais solutions, calculées via programmation linéaire, dont l'encodage du problème est le suivant : 
 \section{Formulation du problème de matching}
 
 Le problème de matching biparti peut s’écrire comme un problème d’optimisation combinatoire sur une matrice de permutation :
@@ -58,7 +57,8 @@ sous contraintes :
 \sum_{i=1}^n \pi_{ij} = 1 \quad \forall j = 1,\dots,n
 \]
 
-où \( C_{ij} \) représente le coût (souvent la distance \( \| x_i - y_j \|^p \)) pour associer le point bleu \( i \) au point rouge \( j \), et \( \pi_{ij} \in \{0,1\} \) indique si l'appariement est choisi.
+où \( C_{ij} \) représente le coût \( \| x_i - y_j \|^p \) pour associer le point bleu \( i \) au point rouge \( j \), et \( \pi_{ij} \in \{0,1\} \) indique si l'appariement est choisi.
+
 
 
 [ explications des heuristiques simples ]
