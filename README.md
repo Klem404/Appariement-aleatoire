@@ -39,3 +39,31 @@ Clément s'est plus concentré sur la partie informatique, les simulations, tand
 ### Rapport Hugo
 
 ### Rapport Clément
+
+#### Algorithmes 
+
+Tout d'abord, j'ai commencé à implémenter différents algorithmes heuristiques simples et des les comparer avec les vrais solutions, calculées via programmation linéaire, dont l'encodage du problème est le suivant : 
+\section{Formulation du problème de matching}
+
+Le problème de matching biparti peut s’écrire comme un problème d’optimisation combinatoire sur une matrice de permutation :
+
+\[
+\min_{\pi \in \{0,1\}^{n \times n}} \sum_{i=1}^n \sum_{j=1}^n C_{ij} \pi_{ij}
+\]
+
+sous contraintes :
+
+\[
+\sum_{j=1}^n \pi_{ij} = 1 \quad \forall i = 1,\dots,n, \qquad
+\sum_{i=1}^n \pi_{ij} = 1 \quad \forall j = 1,\dots,n
+\]
+
+où \( C_{ij} \) représente le coût (souvent la distance \( \| x_i - y_j \|^p \)) pour associer le point bleu \( i \) au point rouge \( j \), et \( \pi_{ij} \in \{0,1\} \) indique si l'appariement est choisi.
+
+
+[ explications des heuristiques simples ]
+Nous avons eu ces résultats. [results]
+Ensuite,nous avons regardé deux algorithmes + complexes, l'algorithme hongrois, et l'algorithme sinkhorn , [explications des deux algos et calcul des complexité (et celle de prog lin)]
+et nous avons eu ces résultats :  [results ].
+
+Enfin, pour s'intéresser aux asymptotiques et de voir comment le résultat varie selon d et n, nous avons fait des simulations via l'algo hongrois (non heuristique et donc + efficace que lin prog) : [résultats] [observations]
