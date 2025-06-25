@@ -1,58 +1,70 @@
-# Appariement-aleatoire
-## Présentation
-L'enjeu de ce projet a été d'aborder le problème d'appariment aléatoire bipartite (en anglais Random Euclidian Bipartite Matching Problem).
 
-Soit $d \geq 1$ et considérons $2n \geq 1$ iid variables aléatoires.
+# Appariement-aléatoire
 
-$(X\_i)\_{i=1}^{n} (Y\_i)\_{i=1}^{n}$
+---
 
-telles que $P(X\_i \in A) = \left\|A\right\|$ pour tout $A \subseteq [0,1]^d$
-Avec $|A|$ désigant la mesure de Lebesque (d-dimensionnelle) de A.
+**Présentation**
 
-Le principe du problème d'appariment aléatoire bipartite est de chercher les connexions (ou les matching) entre les $X_i$ et les $Y_i$ telle que la somme des différents points connectés soit minimale. On a même une généralisation, dans laquelle on se penche plutôt sur une puissance de cette distance.
+L'enjeu de ce projet a été d'aborder le problème d’appariement aléatoire bipartite (en anglais *Random Euclidean Bipartite Matching Problem*).
 
-Formellement, on prend $\mathbb{S}_n$ l'ensemble des permutations de ${1,...,n}$, et $\left\| .\right\|$ la norme euclidienne,
+Soit $d \geq 1$ et considérons $2n \geq 1$ variables aléatoires iid :  
+$(X_i)_{i=1}^{n}, (Y_i)_{i=1}^{n}$  
+telles que $P(X_i \in A) = \|A\|$ pour tout $A \subseteq [0,1]^d$,  
+avec $\|A\|$ désignant la mesure de Lebesgue (d-dimensionnelle) de $A$.
 
-$\left\| x\right\| = \sqrt{\sum\_{k=1}^d x\_k^2}$
+Le principe du problème d’appariement bipartite est de chercher une correspondance entre les $X_i$ et les $Y_i$ de manière à **minimiser la somme** des distances entre les paires associées.  
+Ce problème peut aussi être généralisé en considérant une **puissance $p$** de cette distance.
 
-Soit $p\in ]0,+\infty[$ . Le problème s'énonce comme suit
+Formellement, soit $\mathbb{S}_n$ l'ensemble des permutations de $\{1, ..., n\}$, et $\| \cdot \|$ la norme euclidienne :
 
-$B_{p,n} = min \_{\sigma\in \mathbb{S\_n}}\sum\_{i=1}^n\left\|X\_i-Y\_ \sigma (i)\right\| ^p$
+$$
+\|x\| = \sqrt{\sum_{k=1}^d x_k^2}
+$$
 
-Ce projet a été réalisé en binôme par Clément COURNIL-RABEUX Hugo TAILE MANIKOM sous sous la supervision de Monsieur Cyril Letrouit.
+Soit $p \in ]0,+\infty[$. Le problème s’énonce alors :
 
+$$
+B_{p,n} = \min_{\sigma \in \mathbb{S}_n} \sum_{i=1}^n \|X_i - Y_{\sigma(i)}\|^p
+$$
 
-## Les tâches accomplies
+Ce projet a été réalisé en binôme par Clément COURNIL--RABEUX et Hugo TAILE MANIKOM, sous la supervision de Monsieur Cyril LETROUIT.
 
-Pour ce travail, nous nous somme appuyés sur le cours de Dario Trevisan intitulé "Notes on Random Euclidian Bipartite Matching Matching Problems".
+---
 
-Nous avons commencé par une lecture/compréhension du polycopié, des lemmes, théorèmes, démonstrations,etc.
+**Les tâches accomplies**
 
-Après quoi, nous avons commencé à etudié le problème de manière empirique, vulgarisé le problème et abrodé quelques applications en vif, afin de mieux le comprendre avant de l'étudier de manière plus formelle.
+Nous nous sommes appuyés sur le cours de Dario Trevisan intitulé *Notes on Random Euclidean Bipartite Matching Problems*.
 
-La première tâche qui nous a été confié par monsieur Letrouit a été de faire de nombreuses simulations en faisant varier de nombreux paramètres de notre problème. Nous avons également utilisés plusieurs types d'algorithmes et comparés les différentes complexités. Les comprortements des différentes courbes se justifiaient par des lemes dont on a été par la suite chargés de démontrer.
+Nous avons d’abord lu et compris le polycopié (lemmes, théorèmes, démonstrations…). Ensuite, nous avons étudié le problème de manière empirique, vulgarisé son contenu et envisagé quelques applications afin d’en approfondir notre compréhension avant l’étude formelle.
 
-Clément s'est plus concentré sur la partie informatique, les simulations, tandis qu'Hugo a plutôt mis l'accent sur la partie mathématique du problème.
+La première tâche confiée par Monsieur Letrouit a été de réaliser de nombreuses simulations en faisant varier différents paramètres.  
+Nous avons utilisé plusieurs types d’algorithmes et comparé leurs complexités respectives. Les comportements observés dans les résultats ont pu être justifiés à l’aide de lemmes que nous avons ensuite démontrés.
 
-## Le travail
+Clément s’est concentré sur la partie informatique (simulations), tandis qu’Hugo a approfondi les aspects mathématiques du problème.
+
+---
+
+**Le travail**
 
 ### Rapport Hugo
+
+
 
 ### Rapport Clément
 
 #### Algorithmes
 
-Tout d'abord, j'ai commencé à implémenter différents algorithmes heuristiques simples et à les comparer avec les vraies solutions, calculées via programmation linéaire, dont l'encodage du problème est le suivant :
+J’ai d’abord implémenté plusieurs algorithmes heuristiques simples et les ai comparés avec les vraies solutions obtenues par **programmation linéaire**.
 
 ##### Formulation du problème de matching
 
-Le problème de matching biparti peut s’écrire comme un problème d’optimisation combinatoire sur une matrice de permutation :
+Le problème d’appariement bipartite s’écrit comme un problème d’optimisation combinatoire sur une matrice de permutation :
 
 $$
 \min_{\pi \in \{0,1\}^{n \times n}} \sum_{i=1}^n \sum_{j=1}^n C_{ij} \pi_{ij}
 $$
 
-sous contraintes :
+Sous contraintes :
 
 $$
 \sum_{j=1}^n \pi_{ij} = 1 \quad \forall i = 1,\dots,n
@@ -62,43 +74,42 @@ $$
 \sum_{i=1}^n \pi_{ij} = 1 \quad \forall j = 1,\dots,n
 $$
 
-où $$\( C_{ij} \)$$ représente le coût  $$\( \| x_i - y_j \|^p \)$$ pour associer le point bleu $$\( i \)$$ au point rouge $$\( j \)$$, et $$\( \pi_{ij} \in \{0,1\} \)$$ indique si l'appariement est sélectionné.
+où $C_{ij}$ représente le coût $\| x_i - y_j \|^p$ pour associer le point bleu $i$ au point rouge $j$, et $\pi_{ij} \in \{0,1\}$ indique si l’appariement est sélectionné.
 
-Les trois heuristiques simples utilisée sont Greedy, NearestNeighbour, et 2Improvment. 
+##### Heuristiques simples utilisées
 
---L'algorithme **Greedy** consiste à itérativement associer les paires de points (bleu, rouge) de coût minimal, en évitant de réutiliser des points déjà associés.
+Les trois heuristiques simples utilisées sont **Greedy**, **Nearest Neighbour**, et **2-Improvement** :
 
-- À chaque étape, on choisit la paire de points $ (i,j) $ non encore utilisée minimisant la distance $ C_{ij} $.
-- Complexité : $\mathcal{O}(n^2)$.
+- **Greedy** :  
+  Associe itérativement les paires de points (bleu, rouge) de coût minimal, sans réutilisation de points.
 
---L'algorithme **Nearest Neighbour** procède différemment : pour chaque point bleu $i$, on choisit le point rouge $j$ le plus proche (non encore pris) :
+  - À chaque étape, on choisit la paire $(i,j)$ non encore utilisée minimisant $C_{ij}$.
+  - Complexité : $\mathcal{O}(n^2)$.
 
-$$
-j = \arg\min_{j'} \| x_i - y_{j'} \|
-$$
+- **Nearest Neighbour** :  
+  Pour chaque point bleu $i$, on choisit le point rouge $j$ le plus proche (non encore pris) :
 
-- Chaque point bleu est traité dans l'ordre, et associé à son voisin rouge le plus proche non assigné.
-- Complexité : $\mathcal{O}(n^2)$.
+  $$
+  j = \arg\min_{j'} \| x_i - y_{j'} \|
+  $$
 
---L'algorithme **2-Improvement** (ou 2-opt) part d'un matching initial , et cherche à améliorer localement la solution :
+  - Chaque point est traité dans l’ordre.
+  - Complexité : $\mathcal{O}(n^2)$.
 
-- On parcourt les paires d'appariements $(i,j)$ et $(k,l)$,
-- On teste si échanger les correspondances ($i \leftrightarrow l$, $k \leftrightarrow j$) réduit le coût total :
+- **2-Improvement (2-opt)** :  
+  À partir d’un matching initial, on cherche à améliorer localement la solution :
 
-$$
-\|x_i - y_j\|^p + \|x_k - y_l\|^p > \|x_i - y_l\|^p + \|x_k - y_j\|^p
-$$
+  - Parcours des paires $(i,j)$ et $(k,l)$.
+  - Test si échanger les correspondances ($i \leftrightarrow l$, $k \leftrightarrow j$) réduit le coût total :
 
-- Si oui, on effectue l’échange. On répète jusqu’à convergence.
+  $$
+  \|x_i - y_j\|^p + \|x_k - y_l\|^p > \|x_i - y_l\|^p + \|x_k - y_j\|^p
+  $$
 
-- Complexité moyenne : dépend du nombre d'itérations, généralement entre $\mathcal{O}(n^2)$ et $\mathcal{O}(n^3)$.
+  - Si oui, on effectue l’échange. Répété jusqu’à convergence.
 
+---
 
-Nous avons eu ces résultats. 
+**Résultats obtenus :**
 
-
-
-Ensuite,nous avons regardé deux algorithmes + complexes, l'algorithme hongrois, et l'algorithme sinkhorn , [explications des deux algos et calcul des complexité (et celle de prog lin)]
-et nous avons eu ces résultats :  [results ].
-
-Enfin, pour s'intéresser aux asymptotiques et de voir comment le résultat varie selon d et n, nous avons fait des simulations via l'algo hongrois (non heuristique et donc + efficace que lin prog) : [résultats] [observations]
+![Comparaison des heuristiques](https://raw.githubusercontent.com/Klem404/images/97b668ddcd6965a9037142a1a671e4ff37dc6538/easy_heuristics.png)
