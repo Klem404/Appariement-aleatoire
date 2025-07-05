@@ -83,7 +83,7 @@ class CubeSimulation:
                                 [self.blue[bleu_idx, 2], self.red[rouge_idx, 2]],
                                 'k-', linewidth=2, alpha=0.9)
 
-            ax.set_title(f"Étape {index + 1}/{num_steps} — poids total : {weights[index]:.4f}")
+            ax.set_title(f"Poids total : {weights[index]:.4f}")
             fig.canvas.draw_idle()
 
         def on_slider_change(val):
@@ -156,7 +156,7 @@ class CubeSimulation:
 if __name__ == "__main__":
     Cube2 = CubeSimulation(2,30)
     Cube2.generate_points()
-    Cube2.represent(matching = [{i:i for i in range(30)},{i:29-i for i in range(30)},{i: (i + 1) % 30 for i in range(30)}])
+    Cube2.represent(matching = [{i:i for i in range(30)}])
     # Cube3 = CubeSimulation(3,50)
     # Cube3.generate_points()
-    # # Cube3.represent(matching = {i:i for i in range(50)})
+    # Cube3.represent(matching = {i:i for i in range(50)})
